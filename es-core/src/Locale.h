@@ -9,12 +9,14 @@
 #include <string>
 #include <map>
 #include <locale>
+#include <regex>
 
 class Locale
 {
   public:
     static Locale* getInstance();
     std::string gettext(std::string key);
+    std::string gettext(std::string key, std::map<std::string, std::string> parameters);
     void setLanguage(std::string language);
     std::vector<std::string> getLanguages();
   private:

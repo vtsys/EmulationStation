@@ -1,5 +1,7 @@
 #include "components/AsyncReqComponent.h"
 
+#include "Locale.h"
+
 #include "renderers/Renderer.h"
 #include "HttpReq.h"
 
@@ -48,6 +50,6 @@ void AsyncReqComponent::render(const Transform4x4f& /*parentTrans*/)
 std::vector<HelpPrompt> AsyncReqComponent::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts;
-	prompts.push_back(HelpPrompt("b", "cancel"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("cancel")));
 	return prompts;
 }

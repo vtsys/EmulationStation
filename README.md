@@ -1,4 +1,7 @@
-Locale::getInstance()->gettext("choose")
+#include "Locale.h"
+
+Locale::getInstance()->gettext("back")
+
 HelpPrompt("
 
 

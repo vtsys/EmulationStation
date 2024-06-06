@@ -477,14 +477,14 @@ std::vector<HelpPrompt> GridGameListView::getHelpPrompts()
 	std::vector<HelpPrompt> prompts;
 
 	if(Settings::getInstance()->getBool("QuickSystemSelect"))
-		prompts.push_back(HelpPrompt("lr", "system"));
+		prompts.push_back(HelpPrompt("lr", Locale::getInstance()->gettext("system")));
 	prompts.push_back(HelpPrompt("up/down/left/right", Locale::getInstance()->gettext("choose")));
-	prompts.push_back(HelpPrompt("a", "launch"));
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("launch")));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	if(!UIModeController::getInstance()->isUIModeKid())
-		prompts.push_back(HelpPrompt("select", "options"));
+		prompts.push_back(HelpPrompt("select", Locale::getInstance()->gettext("options")));
 	if(mRoot->getSystem()->isGameSystem())
-		prompts.push_back(HelpPrompt("x", "random"));
+		prompts.push_back(HelpPrompt("x", Locale::getInstance()->gettext("random")));
 	if(mRoot->getSystem()->isGameSystem() && !UIModeController::getInstance()->isUIModeKid())
 	{
 		std::string prompt = CollectionSystemManager::get()->getEditingCollection();

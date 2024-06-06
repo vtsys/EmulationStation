@@ -36,8 +36,8 @@ GuiScraperStart::GuiScraperStart(Window* window) : GuiComponent(window),
 	mApproveResults->setState(true);
 	mMenu.addWithLabel("User decides on conflicts", mApproveResults);
 
-	mMenu.addButton("START", "start", std::bind(&GuiScraperStart::pressedStart, this));
-	mMenu.addButton("BACK", "back", [&] { delete this; });
+	mMenu.addButton(Locale::getInstance()->gettext("start"), Locale::getInstance()->gettext("start"), std::bind(&GuiScraperStart::pressedStart, this));
+	mMenu.addButton(Locale::getInstance()->gettext("back"), Locale::getInstance()->gettext("back"), [&] { delete this; });
 
 	mMenu.setPosition((Renderer::getScreenWidth() - mMenu.getSize().x()) / 2, Renderer::getScreenHeight() * 0.15f);
 }
@@ -124,7 +124,7 @@ bool GuiScraperStart::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiScraperStart::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mMenu.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
-	prompts.push_back(HelpPrompt("start", "close"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
+	prompts.push_back(HelpPrompt("start", Locale::getInstance()->gettext("close")));
 	return prompts;
 }

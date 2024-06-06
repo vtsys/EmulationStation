@@ -1,5 +1,7 @@
 #include "guis/GuiGamelistFilter.h"
 
+#include "Locale.h"
+
 #include "components/OptionListComponent.h"
 #include "views/UIModeController.h"
 #include "SystemData.h"
@@ -28,7 +30,7 @@ void GuiGamelistFilter::initializeMenu()
 
 	addFiltersToMenu();
 
-	mMenu.addButton("BACK", "back", std::bind(&GuiGamelistFilter::applyFilters, this));
+	mMenu.addButton(Locale::getInstance()->gettext("back"), Locale::getInstance()->gettext("back"), std::bind(&GuiGamelistFilter::applyFilters, this));
 
 	mMenu.setPosition((Renderer::getScreenWidth() - mMenu.getSize().x()) / 2, Renderer::getScreenHeight() * 0.15f);
 }
@@ -112,6 +114,6 @@ bool GuiGamelistFilter::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiGamelistFilter::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mMenu.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	return prompts;
 }

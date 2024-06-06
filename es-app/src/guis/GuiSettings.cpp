@@ -1,5 +1,7 @@
 #include "guis/GuiSettings.h"
 
+#include "Locale.h"
+
 #include "views/ViewController.h"
 #include "Settings.h"
 #include "SystemData.h"
@@ -9,7 +11,7 @@ GuiSettings::GuiSettings(Window* window, const char* title) : GuiComponent(windo
 {
 	addChild(&mMenu);
 
-	mMenu.addButton("BACK", "go back", [this] { delete this; });
+	mMenu.addButton(Locale::getInstance()->gettext("back"), Locale::getInstance()->gettext("back"), [this] { delete this; });
 
 	setSize((float)Renderer::getScreenWidth(), (float)Renderer::getScreenHeight());
 	mMenu.setPosition((mSize.x() - mMenu.getSize().x()) / 2, Renderer::getScreenHeight() * 0.15f);
@@ -62,8 +64,8 @@ std::vector<HelpPrompt> GuiSettings::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mMenu.getHelpPrompts();
 
-	prompts.push_back(HelpPrompt("b", "back"));
-	prompts.push_back(HelpPrompt("start", "close"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
+	prompts.push_back(HelpPrompt("start", Locale::getInstance()->gettext("close")));
 
 	return prompts;
 }

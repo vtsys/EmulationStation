@@ -1,5 +1,7 @@
 #include "guis/GuiRandomCollectionOptions.h"
 
+#include "Locale.h"
+
 #include "GuiRandomCollectionOptions.h"
 #include "components/OptionListComponent.h"
 #include "components/SwitchComponent.h"
@@ -223,6 +225,6 @@ bool GuiRandomCollectionOptions::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiRandomCollectionOptions::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mMenu.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	return prompts;
 }

@@ -1,5 +1,7 @@
 #include "components/ScraperSearchComponent.h"
 
+#include "Locale.h"
+
 #include "components/ComponentList.h"
 #include "components/DateTimeEditComponent.h"
 #include "components/ImageComponent.h"
@@ -463,7 +465,7 @@ std::vector<HelpPrompt> ScraperSearchComponent::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mGrid.getHelpPrompts();
 	if(getSelectedIndex() != -1)
-		prompts.push_back(HelpPrompt("a", "accept result"));
+		prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("acceptResult")));
 
 	return prompts;
 }

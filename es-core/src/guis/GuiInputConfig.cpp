@@ -195,7 +195,7 @@ GuiInputConfig::GuiInputConfig(Window* window, InputConfig* target, bool reconfi
 		Input input;
 		if (!mTargetConfig->getInputByName("HotKeyEnable", &input)) {
 			mWindow->pushGui(new GuiMsgBox(mWindow,
-				"YOU DIDN'T CHOOSE A HOTKEY ENABLE BUTTON. THIS IS REQUIRED FOR EXITING GAMES WITH A CONTROLLER. DO YOU WANT TO USE THE SELECT BUTTON DEFAULT ? PLEASE ANSWER YES TO USE SELECT OR NO TO NOT SET A HOTKEY ENABLE BUTTON.",
+				Locale::getInstance()->gettext("hotKeyEnable"),
 				Locale::getInstance()->gettext("yes"), [this, okFunction] {
 					Input input;
 					mTargetConfig->getInputByName("Select", &input);

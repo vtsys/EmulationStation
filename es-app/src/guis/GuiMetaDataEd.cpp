@@ -332,7 +332,7 @@ bool GuiMetaDataEd::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiMetaDataEd::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mGrid.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
-	prompts.push_back(HelpPrompt("start", "close"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
+	prompts.push_back(HelpPrompt("start", Locale::getInstance()->gettext("close")));
 	return prompts;
 }

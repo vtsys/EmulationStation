@@ -1,6 +1,6 @@
-#include "Locale.h"
-
 #include "views/gamelist/BasicGameListView.h"
+
+#include "Locale.h"
 
 #include "utils/FileSystemUtil.h"
 #include "views/UIModeController.h"
@@ -209,18 +209,18 @@ std::vector<HelpPrompt> BasicGameListView::getHelpPrompts()
 	std::vector<HelpPrompt> prompts;
 
 	if(Settings::getInstance()->getBool("QuickSystemSelect"))
-		prompts.push_back(HelpPrompt("left/right", "system"));
+		prompts.push_back(HelpPrompt("left/right", Locale::getInstance()->gettext("system")));
 	prompts.push_back(HelpPrompt("up/down", Locale::getInstance()->gettext("choose")));
-	prompts.push_back(HelpPrompt("a", "launch"));
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("launch")));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	if(!UIModeController::getInstance()->isUIModeKid())
-		prompts.push_back(HelpPrompt("select", "options"));
+		prompts.push_back(HelpPrompt("select", Locale::getInstance()->gettext("options")));
 	if(mRoot->getSystem()->isGameSystem())
-		prompts.push_back(HelpPrompt("x", "random"));
+		prompts.push_back(HelpPrompt("x", Locale::getInstance()->gettext("random")));
 	if(mRoot->getSystem()->isGameSystem() && !UIModeController::getInstance()->isUIModeKid())
 	{
 		std::string prompt = CollectionSystemManager::get()->getEditingCollection();
-		prompts.push_back(HelpPrompt("y", prompt));
+		prompts.push_back(HelpPrompt("y", Locale::getInstance()->gettext(prompt)));
 	}
 	return prompts;
 }

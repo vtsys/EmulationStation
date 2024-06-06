@@ -1,5 +1,7 @@
 #include "components/VideoComponent.h"
 
+#include "Locale.h"
+
 #include "resources/ResourceManager.h"
 #include "utils/FileSystemUtil.h"
 #include "PowerSaver.h"
@@ -212,7 +214,7 @@ void VideoComponent::applyTheme(const std::shared_ptr<ThemeData>& theme, const s
 std::vector<HelpPrompt> VideoComponent::getHelpPrompts()
 {
 	std::vector<HelpPrompt> ret;
-	ret.push_back(HelpPrompt("a", "select"));
+	ret.push_back(HelpPrompt("a", Locale::getInstance()->gettext("select")));
 	return ret;
 }
 

@@ -1,5 +1,7 @@
 #include "components/RatingComponent.h"
 
+#include "Locale.h"
+
 #include "resources/TextureResource.h"
 #include "ThemeData.h"
 
@@ -166,6 +168,6 @@ void RatingComponent::applyTheme(const std::shared_ptr<ThemeData>& theme, const 
 std::vector<HelpPrompt> RatingComponent::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts;
-	prompts.push_back(HelpPrompt("a", "add star"));
+	prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("addStar")));
 	return prompts;
 }

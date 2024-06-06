@@ -13,27 +13,98 @@
 
 
 <string key="soundSettings">SOUND SETTINGS2</string>
+<string key="systemVolume">SYSTEM VOLUME2</string>
+<string key="audioCard">AUDIO CARD2</string>
+<string key="audioDevice">AUDIO DEVICE2</string>
+<string key="enableNavigationSounds">ENABLE NAVIGATION SOUNDS2</string>
+<string key="enableVideoAudio">ENABLE VIDEO AUDIO2</string>
+<string key="omxPlayerAudioDevice">OMX PLAYER AUDIO DEVICE2</string>
 
 
 <string key="uiSettings">UI SETTINGS2</string>
+<string key="language">LANGUAGE2</string>
+<string key="uiMode">UI MODE2</string>
+<string key="uiModeMsg">
+You are changing the UI to a restricted mode: 
+%selectedMode%
+This will hide most menu-options to prevent changes to the system.
+To unlock and return to the full UI, enter this code: "%formattedPassKeyStr%"
+
+Do you want to proceed?2
+</string>
+<string key="screensaverSettings">SCREENSAVER SETTINGS2</string>
+<string key="quickSystemSelect">QUICK SYSTEM SELECT2</string>
+<string key="carouselTransitions">CAROUSEL TRANSITIONS2</string>
+<string key="transitionStyle">TRANSITION STYLE2</string>
+<string key="themeSet">THEME SET2</string>
+<string key="gamelistViewStyle">GAMELIST VIEW STYLE2</string>
+<string key="ignoreArticlesNameSortOnly">IGNORE ARTICLES (NAME SORT ONLY)2</string>
+<string key="useFullScreenPagingForLBRB">USE FULL SCREEN PAGING FOR LB/RB2</string>
+<string key="startOnSystem">START ON SYSTEM2</string>
+<string key="onScreenHelp">ON-SCREEN HELP2</string>
+<string key="enableFilters">ENABLE FILTERS2</string>
+<string key="disableStartMenuInKidMod">DISABLE START MENU IN KID MOD2</string>
 
 
 <string key="gameCollectionSettings">GAME COLLECTION SETTINGS2</string>
 
 
 <string key="otherSettings">OTHER SETTINGS2</string>
+<string key="vramLimit">VRAM LIMIT2</string>
+<string key="powerSaverModes">POWER SAVER MODES2</string>
+<string key="saveMetadata">SAVE METADATA2</string>
+<string key="parseGameslistsOnly">PARSE GAMESLISTS ONLY2</string>
+<string key="searchForLocalArt">SEARCH FOR LOCAL ART2</string>
+<string key="showHiddenFiles">SHOW HIDDEN FILES2</string>
+<string key="useOmxPlayerHwAccelerated">USE OMX PLAYER (HW ACCELERATED)2</string>
+<string key="indexFilesDuringScreensaver">INDEX FILES DURING SCREENSAVER2</string>
+<string key="showFramerate">SHOW FRAMERATE2</string>
 
 
 <string key="configureInput">CONFIGURE INPUT2</string>
+<string key="configureInputMsg">ARE YOU SURE YOU WANT TO CONFIGURE INPUT?2</string>
+
+<string key="quit">QUIT2</string>
+<string key="reallyRestartMsg">REALLY RESTART?2</string>
+<string key="restartEmulationstation">RESTART EMULATIONSTATION2</string>
+<string key="reallyQuitMsg">REALLY QUIT?2</string>
+<string key="quitEmulationstation">QUIT EMULATIONSTATION2</string>
+<string key="restartSystem">RESTART SYSTEM2</string>
+<string key="reallyShutdownMsg">REALLY SHUTDOWN?2</string>
+<string key="shutdownSystem">SHUTDOWN SYSTEM2</string>
+
 
 
 <string key="menu">MENU2</string>
 <string key="choose">CHOOSE2</string>
+<string key="change">CHANGE2</string>
 <string key="select">SELECT2</string>
 <string key="random">RANDOM2</string>
 <string key="close">CLOSE2</string>
-<string key="quit">QUIT2</string>
+<string key="start">START2</string>
+<string key="edit">EDIT2</string>
+<string key="stopEditing">STOP EDITING2</string>
+<string key="moveCursor">MOVE CURSOR2</string>
+<string key="back">BACK2</string>
+<string key="launch">LAUNCH2</string>
+<string key="system">SYSTEM2</string>
+<string key="options">OPTIONS2</string>
+<string key="Favorites">FAVORITES2</string>
+<string key="addStar">ADD STAR2</string>
+<string key="acceptResult">ACCEPT RESULT2</string>
+
+
 <string key="launchScreensaver">LAUNCH SCREENSAVER2</string>
+<string key="jumpTo">JUMP TO ...2</string>
+<string key="sortGamesBy">SORT GAMES BY2</string>
+<string key="launchSystemScreensaver">LAUNCH SYSTEM SCREENSAVER2</string>
+<string key="filterGamelist">FILTER GAMELIST2</string>
+<string key="addRemoveGamesToThisGameCollection">ADD/REMOVE GAMES TO THIS GAME COLLECTION2</string>
+<string key="finishEditing">FINISH EDITING2</string>
+<string key="getNewRandomGames">GET NEW RANDOM GAMES2</string>
+<string key="hotKeyEnable">YOU DIDN'T CHOOSE A HOTKEY ENABLE BUTTON. THIS IS REQUIRED FOR EXITING GAMES WITH A CONTROLLER. DO YOU WANT TO USE THE SELECT BUTTON DEFAULT ? PLEASE ANSWER YES TO USE SELECT OR NO TO NOT SET A HOTKEY ENABLE BUTTON.2</string>
+
+
 
 <string key="yes">YES2</string>
 <string key="no">NO2</string>

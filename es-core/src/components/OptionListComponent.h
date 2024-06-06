@@ -2,6 +2,8 @@
 #ifndef ES_CORE_COMPONENTS_OPTION_LIST_COMPONENT_H
 #define ES_CORE_COMPONENTS_OPTION_LIST_COMPONENT_H
 
+#include "Locale.h"
+
 #include "GuiComponent.h"
 #include "Log.h"
 #include "Window.h"
@@ -87,7 +89,7 @@ private:
 				mMenu.addRow(row, (!mParent->mMultiSelect && it->selected));
 			}
 
-			mMenu.addButton("BACK", "accept", [this] { delete this; });
+			mMenu.addButton(Locale::getInstance()->gettext("back"), Locale::getInstance()->gettext("back"), [this] { delete this; });
 
 			if(mParent->mMultiSelect)
 			{
@@ -128,7 +130,7 @@ private:
 		std::vector<HelpPrompt> getHelpPrompts() override
 		{
 			auto prompts = mMenu.getHelpPrompts();
-			prompts.push_back(HelpPrompt("b", "back"));
+			prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 			return prompts;
 		}
 	};
@@ -320,9 +322,9 @@ private:
 	{
 		std::vector<HelpPrompt> prompts;
 		if(!mMultiSelect)
-			prompts.push_back(HelpPrompt("left/right", "change"));
+			prompts.push_back(HelpPrompt("left/right", Locale::getInstance()->gettext("change")));
 
-		prompts.push_back(HelpPrompt("a", "select"));
+		prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("select")));
 		return prompts;
 	}
 

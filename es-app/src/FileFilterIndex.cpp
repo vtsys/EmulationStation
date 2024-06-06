@@ -1,5 +1,7 @@
 #include "FileFilterIndex.h"
 
+#include "Locale.h"
+
 #include "utils/StringUtil.h"
 #include "views/UIModeController.h"
 #include "FileData.h"

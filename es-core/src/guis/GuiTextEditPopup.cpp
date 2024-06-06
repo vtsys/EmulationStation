@@ -1,5 +1,7 @@
 #include "guis/GuiTextEditPopup.h"
 
+#include "Locale.h"
+
 #include "components/ButtonComponent.h"
 #include "components/MenuComponent.h"
 #include "components/TextEditComponent.h"
@@ -68,6 +70,6 @@ bool GuiTextEditPopup::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiTextEditPopup::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mGrid.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	return prompts;
 }

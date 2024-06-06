@@ -1,5 +1,7 @@
 #include "guis/GuiCollectionSystemsOptions.h"
 
+#include "Locale.h"
+
 #include "components/OptionListComponent.h"
 #include "components/SwitchComponent.h"
 #include "guis/GuiRandomCollectionOptions.h"
@@ -111,7 +113,7 @@ void GuiCollectionSystemsOptions::initializeMenu()
 		mMenu.addRow(row);
 	}
 
-	mMenu.addButton("BACK", "back", std::bind(&GuiCollectionSystemsOptions::applySettings, this));
+	mMenu.addButton(Locale::getInstance()->gettext("back"), Locale::getInstance()->gettext("back"), std::bind(&GuiCollectionSystemsOptions::applySettings, this));
 
 	mMenu.setPosition((Renderer::getScreenWidth() - mMenu.getSize().x()) / 2, Renderer::getScreenHeight() * 0.15f);
 }
@@ -279,6 +281,6 @@ bool GuiCollectionSystemsOptions::input(InputConfig* config, Input input)
 std::vector<HelpPrompt> GuiCollectionSystemsOptions::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts = mMenu.getHelpPrompts();
-	prompts.push_back(HelpPrompt("b", "back"));
+	prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("back")));
 	return prompts;
 }

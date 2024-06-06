@@ -94,8 +94,19 @@ std::string Locale::gettext(std::string key)
 	if(Locale::localeMap.find(key) == Locale::localeMap.cend())
 	{
 		LOG(LogError) << "Tried to use undefined locale key - " << key << "!";
-		return "--";
+		return "(" + key + ")";
 
 	}
 	return Locale::localeMap[key];
+}
+
+std::string Locale::gettext(std::string key, std::map<std::string, std::string> parameters)
+{
+	std::string result = Locale::gettext(key);
+	for (auto it = parameters.cbegin(); it != parameters.cend(); it++)
+	{
+		result = std::regex_replace(result, std::regex("%" + it->first + "%"), it->second);
+	}
+
+	return result;
 }

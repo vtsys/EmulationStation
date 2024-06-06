@@ -1,5 +1,7 @@
 #include "components/TextEditComponent.h"
 
+#include "Locale.h"
+
 #include "resources/Font.h"
 #include "utils/StringUtil.h"
 
@@ -301,10 +303,10 @@ std::vector<HelpPrompt> TextEditComponent::getHelpPrompts()
 	std::vector<HelpPrompt> prompts;
 	if(mEditing)
 	{
-		prompts.push_back(HelpPrompt("up/down/left/right", "move cursor"));
-		prompts.push_back(HelpPrompt("b", "stop editing"));
+		prompts.push_back(HelpPrompt("up/down/left/right", Locale::getInstance()->gettext("moveCursor")));
+		prompts.push_back(HelpPrompt("b", Locale::getInstance()->gettext("stopEditing")));
 	}else{
-		prompts.push_back(HelpPrompt("a", "edit"));
+		prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("edit")));
 	}
 	return prompts;
 }
