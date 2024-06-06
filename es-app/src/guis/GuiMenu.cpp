@@ -1,3 +1,5 @@
+#include "Locale.h"
+
 #include "guis/GuiMenu.h"
 
 #include "components/OptionListComponent.h"
@@ -23,22 +25,22 @@
 #include "views/gamelist/IGameListView.h"
 #include "guis/GuiInfoPopup.h"
 
-GuiMenu::GuiMenu(Window* window) : GuiComponent(window), mMenu(window, "MAIN MENU"), mVersion(window)
+GuiMenu::GuiMenu(Window* window) : GuiComponent(window), mMenu(window, Locale::getInstance()->gettext("mainMenu").c_str()), mVersion(window)
 {
 	bool isFullUI = UIModeController::getInstance()->isUIModeFull();
 
 	if (isFullUI) {
-		addEntry("SCRAPER", 0x777777FF, true, [this] { openScraperSettings(); });
-		addEntry("SOUND SETTINGS", 0x777777FF, true, [this] { openSoundSettings(); });
-		addEntry("UI SETTINGS", 0x777777FF, true, [this] { openUISettings(); });
-		addEntry("GAME COLLECTION SETTINGS", 0x777777FF, true, [this] { openCollectionSystemSettings(); });
-		addEntry("OTHER SETTINGS", 0x777777FF, true, [this] { openOtherSettings(); });
-		addEntry("CONFIGURE INPUT", 0x777777FF, true, [this] { openConfigInput(); });
+		addEntry(Locale::getInstance()->gettext("scraper").c_str(), 0x777777FF, true, [this] { openScraperSettings(); });
+		addEntry(Locale::getInstance()->gettext("soundSettings").c_str(), 0x777777FF, true, [this] { openSoundSettings(); });
+		addEntry(Locale::getInstance()->gettext("uiSettings").c_str(), 0x777777FF, true, [this] { openUISettings(); });
+		addEntry(Locale::getInstance()->gettext("gameCollectionSettings").c_str(), 0x777777FF, true, [this] { openCollectionSystemSettings(); });
+		addEntry(Locale::getInstance()->gettext("otherSettings").c_str(), 0x777777FF, true, [this] { openOtherSettings(); });
+		addEntry(Locale::getInstance()->gettext("configureInput").c_str(), 0x777777FF, true, [this] { openConfigInput(); });
 	} else {
-		addEntry("SOUND SETTINGS", 0x777777FF, true, [this] { openSoundSettings(); });
+		addEntry(Locale::getInstance()->gettext("soundSettings").c_str(), 0x777777FF, true, [this] { openSoundSettings(); });
 	}
 
-	addEntry("QUIT", 0x777777FF, true, [this] {openQuitMenu(); });
+	addEntry(Locale::getInstance()->gettext("quit").c_str(), 0x777777FF, true, [this] {openQuitMenu(); });
 
 	addChild(&mMenu);
 	addVersionInfo();
@@ -48,23 +50,23 @@ GuiMenu::GuiMenu(Window* window) : GuiComponent(window), mMenu(window, "MAIN MEN
 
 void GuiMenu::openScraperSettings()
 {
-	auto s = new GuiSettings(mWindow, "SCRAPER");
+	auto s = new GuiSettings(mWindow, Locale::getInstance()->gettext("scraper").c_str());
 
 	// scrape from
-	auto scraper_list = std::make_shared< OptionListComponent< std::string > >(mWindow, "SCRAPE FROM", false);
+	auto scraper_list = std::make_shared< OptionListComponent< std::string > >(mWindow, Locale::getInstance()->gettext("scrapeFrom").c_str(), false);
 	std::vector<std::string> scrapers = getScraperList();
 
 	// Select either the first entry of the one read from the settings, just in case the scraper from settings has vanished.
 	for(auto it = scrapers.cbegin(); it != scrapers.cend(); it++)
 		scraper_list->add(*it, *it, *it == Settings::getInstance()->getString("Scraper"));
 
-	s->addWithLabel("SCRAPE FROM", scraper_list);
+	s->addWithLabel(Locale::getInstance()->gettext("scrapeFrom").c_str(), scraper_list);
 	s->addSaveFunc([scraper_list] { Settings::getInstance()->setString("Scraper", scraper_list->getSelected()); });
 
 	// scrape ratings
 	auto scrape_ratings = std::make_shared<SwitchComponent>(mWindow);
 	scrape_ratings->setState(Settings::getInstance()->getBool("ScrapeRatings"));
-	s->addWithLabel("SCRAPE RATINGS", scrape_ratings);
+	s->addWithLabel(Locale::getInstance()->gettext("scrapeRatings"), scrape_ratings);
 	s->addSaveFunc([scrape_ratings] { Settings::getInstance()->setBool("ScrapeRatings", scrape_ratings->getState()); });
 
 	// scrape now
@@ -74,7 +76,7 @@ void GuiMenu::openScraperSettings()
 	openAndSave = [s, openAndSave] { s->save(); openAndSave(); };
 	row.makeAcceptInputHandler(openAndSave);
 
-	auto scrape_now = std::make_shared<TextComponent>(mWindow, "SCRAPE NOW", Font::get(FONT_SIZE_MEDIUM), 0x777777FF);
+	auto scrape_now = std::make_shared<TextComponent>(mWindow, Locale::getInstance()->gettext("scrapeNow"), Font::get(FONT_SIZE_MEDIUM), 0x777777FF);
 	auto bracket = makeArrow(mWindow);
 	row.addElement(scrape_now, true);
 	row.addElement(bracket, false);
@@ -85,7 +87,7 @@ void GuiMenu::openScraperSettings()
 
 void GuiMenu::openSoundSettings()
 {
-	auto s = new GuiSettings(mWindow, "SOUND SETTINGS");
+	auto s = new GuiSettings(mWindow, Locale::getInstance()->gettext("soundSettings").c_str());
 
 	// volume
 	auto volume = std::make_shared<SliderComponent>(mWindow, 0.f, 100.f, 1.f, "%");
@@ -198,6 +200,20 @@ void GuiMenu::openUISettings()
 {
 	auto s = new GuiSettings(mWindow, "UI SETTINGS");
 
+	//Language
+	auto language = std::make_shared< OptionListComponent<std::string> >(mWindow, "LANGUAGE", false);
+	std::vector<std::string> languages = Locale::getInstance()->getLanguages();
+	for(auto it = languages.cbegin(); it != languages.cend(); it++)
+		language->add(*it, *it, Settings::getInstance()->getString("Language") == *it);
+	s->addWithLabel("LANGUAGE", language);
+	s->addSaveFunc([language] {
+		Settings::getInstance()->setString("Language", language->getSelected());
+		Locale::getInstance()->setLanguage(language->getSelected());
+
+		CollectionSystemManager::get()->updateSystemsList();
+		ViewController::get()->reloadAll(true); // TODO - replace this with some sort of signal-based implementation
+	});
+
 	//UI mode
 	auto UImodeSelection = std::make_shared< OptionListComponent<std::string> >(mWindow, "UI MODE", false);
 	std::vector<std::string> UImodes = UIModeController::getInstance()->getUIModes();
@@ -216,11 +232,11 @@ void GuiMenu::openUISettings()
 			msg += "\"" + UIModeController::getInstance()->getFormattedPassKeyStr() + "\"\n\n";
 			msg += "Do you want to proceed?";
 			window->pushGui(new GuiMsgBox(window, msg,
-				"YES", [selectedMode] {
+				Locale::getInstance()->gettext("yes"), [selectedMode] {
 					LOG(LogDebug) << "Setting UI mode to " << selectedMode;
 					Settings::getInstance()->setString("UIMode", selectedMode);
 					Settings::getInstance()->saveFile();
-			}, "NO",nullptr));
+			}, Locale::getInstance()->gettext("no"),nullptr));
 		}
 	});
 
@@ -502,10 +518,10 @@ void GuiMenu::openOtherSettings()
 void GuiMenu::openConfigInput()
 {
 	Window* window = mWindow;
-	window->pushGui(new GuiMsgBox(window, "ARE YOU SURE YOU WANT TO CONFIGURE INPUT?", "YES",
+	window->pushGui(new GuiMsgBox(window, "ARE YOU SURE YOU WANT TO CONFIGURE INPUT?", Locale::getInstance()->gettext("yes"),
 		[window] {
 		window->pushGui(new GuiDetectDevice(window, false, nullptr));
-	}, "NO", nullptr)
+	}, Locale::getInstance()->gettext("no"), nullptr)
 	);
 
 }
@@ -531,7 +547,7 @@ void GuiMenu::openQuitMenu()
 
 		if (confirm_quit) {
 			row.makeAcceptInputHandler([window] {
-				window->pushGui(new GuiMsgBox(window, "REALLY RESTART?", "YES", restart_es_fx, "NO", nullptr));
+				window->pushGui(new GuiMsgBox(window, "REALLY RESTART?", Locale::getInstance()->gettext("yes"), restart_es_fx, Locale::getInstance()->gettext("no"), nullptr));
 			});
 		} else {
 			row.makeAcceptInputHandler(restart_es_fx);
@@ -549,7 +565,7 @@ void GuiMenu::openQuitMenu()
 			row.elements.clear();
 			if (confirm_quit) {
 				row.makeAcceptInputHandler([window] {
-					window->pushGui(new GuiMsgBox(window, "REALLY QUIT?", "YES", quit_es_fx, "NO", nullptr));
+					window->pushGui(new GuiMsgBox(window, "REALLY QUIT?", Locale::getInstance()->gettext("yes"), quit_es_fx, Locale::getInstance()->gettext("no"), nullptr));
 				});
 			} else {
 				row.makeAcceptInputHandler(quit_es_fx);
@@ -570,7 +586,7 @@ void GuiMenu::openQuitMenu()
 	row.elements.clear();
 	if (confirm_quit) {
 		row.makeAcceptInputHandler([window] {
-			window->pushGui(new GuiMsgBox(window, "REALLY RESTART?", "YES", {reboot_sys_fx}, "NO", nullptr));
+			window->pushGui(new GuiMsgBox(window, "REALLY RESTART?", Locale::getInstance()->gettext("yes"), {reboot_sys_fx}, Locale::getInstance()->gettext("no"), nullptr));
 		});
 	} else {
 		row.makeAcceptInputHandler(reboot_sys_fx);
@@ -589,7 +605,7 @@ void GuiMenu::openQuitMenu()
 	row.elements.clear();
 	if (confirm_quit) {
 		row.makeAcceptInputHandler([window] {
-			window->pushGui(new GuiMsgBox(window, "REALLY SHUTDOWN?", "YES", shutdown_sys_fx, "NO", nullptr));
+			window->pushGui(new GuiMsgBox(window, "REALLY SHUTDOWN?", Locale::getInstance()->gettext("yes"), shutdown_sys_fx, Locale::getInstance()->gettext("no"), nullptr));
 		});
 	} else {
 		row.makeAcceptInputHandler(shutdown_sys_fx);
@@ -667,8 +683,8 @@ HelpStyle GuiMenu::getHelpStyle()
 std::vector<HelpPrompt> GuiMenu::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts;
-	prompts.push_back(HelpPrompt("up/down", "choose"));
-	prompts.push_back(HelpPrompt("a", "select"));
-	prompts.push_back(HelpPrompt("start", "close"));
+	prompts.push_back(HelpPrompt("up/down", Locale::getInstance()->gettext("choose")));
+	prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("select")));
+	prompts.push_back(HelpPrompt("start", Locale::getInstance()->gettext("close")));
 	return prompts;
 }

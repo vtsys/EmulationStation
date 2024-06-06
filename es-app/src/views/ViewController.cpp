@@ -1,5 +1,7 @@
 #include "views/ViewController.h"
 
+#include "Locale.h"
+
 #include "animations/Animation.h"
 #include "animations/LambdaAnimation.h"
 #include "animations/LaunchAnimation.h"
@@ -613,7 +615,7 @@ std::vector<HelpPrompt> ViewController::getHelpPrompts()
 
 	prompts = mCurrentView->getHelpPrompts();
 	if(!(UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("DisableKidStartMenu")))
-		prompts.push_back(HelpPrompt("start", "menu"));
+		prompts.push_back(HelpPrompt("start", Locale::getInstance()->gettext("menu")));
 
 	return prompts;
 }

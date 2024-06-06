@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<meta>
+  <name>ENGLISH</name>
+</meta>
+
+<string key="mainMenu">MAIN MENU1</string>
+
+
+<string key="scraper">SCRAPER1</string>
+<string key="scrapeFrom">SCRAPE FROM1</string>
+<string key="scrapeRatings">SCRAPE RATINGS1</string>
+<string key="scrapeNow">SCRAPE NOW1</string>
+
+
+<string key="soundSettings">SOUND SETTINGS1</string>
+
+
+<string key="uiSettings">UI SETTINGS1</string>
+
+
+<string key="gameCollectionSettings">GAME COLLECTION SETTINGS1</string>
+
+
+<string key="otherSettings">OTHER SETTINGS1</string>
+
+
+<string key="configureInput">CONFIGURE INPUT1</string>
+
+
+<string key="menu">MENU1</string>
+<string key="choose">CHOOSE1</string>
+<string key="select">SELECT1</string>
+<string key="random">RANDOM1</string>
+<string key="close">CLOSE1</string>
+<string key="quit">QUIT1</string>
+<string key="launchScreensaver">LAUNCH SCREENSAVER1</string>
+
+<string key="yes">YES1</string>
+<string key="no">NO1</string>

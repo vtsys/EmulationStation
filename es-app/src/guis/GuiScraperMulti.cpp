@@ -1,5 +1,7 @@
 #include "guis/GuiScraperMulti.h"
 
+#include "Locale.h"
+
 #include "components/ButtonComponent.h"
 #include "components/MenuComponent.h"
 #include "components/ScraperSearchComponent.h"

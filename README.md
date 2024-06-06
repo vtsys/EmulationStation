@@ -1,3 +1,7 @@
+Locale::getInstance()->gettext("choose")
+HelpPrompt("
+
+
 EmulationStation
 ================
 

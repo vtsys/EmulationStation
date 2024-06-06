@@ -1,3 +1,5 @@
+#include "Locale.h"
+
 #include "views/SystemView.h"
 
 #include "animations/LambdaAnimation.h"
@@ -377,14 +379,14 @@ std::vector<HelpPrompt> SystemView::getHelpPrompts()
 {
 	std::vector<HelpPrompt> prompts;
 	if (mCarousel.type == VERTICAL || mCarousel.type == VERTICAL_WHEEL)
-		prompts.push_back(HelpPrompt("up/down", "choose"));
+		prompts.push_back(HelpPrompt("up/down", Locale::getInstance()->gettext("choose")));
 	else
-		prompts.push_back(HelpPrompt("left/right", "choose"));
-	prompts.push_back(HelpPrompt("a", "select"));
-	prompts.push_back(HelpPrompt("x", "random"));
+		prompts.push_back(HelpPrompt("left/right", Locale::getInstance()->gettext("choose")));
+	prompts.push_back(HelpPrompt("a", Locale::getInstance()->gettext("select")));
+	prompts.push_back(HelpPrompt("x", Locale::getInstance()->gettext("random")));
 
 	if (!UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("ScreenSaverControls"))
-		prompts.push_back(HelpPrompt("select", "launch screensaver"));
+		prompts.push_back(HelpPrompt("select", Locale::getInstance()->gettext("launchScreensaver")));
 
 	return prompts;
 }

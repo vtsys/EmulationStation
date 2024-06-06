@@ -96,6 +96,8 @@ void Settings::setDefaults()
 		mIntMap["MaxVRAM"] = 100;
 	#endif
 
+	mStringMap["Language"] = "ENGLISH";
+
 	mStringMap["TransitionStyle"] = "fade";
 	mStringMap["ThemeSet"] = "";
 	mStringMap["ScreenSaverBehavior"] = "dim";

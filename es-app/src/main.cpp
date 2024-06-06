@@ -1,6 +1,8 @@
 //EmulationStation, a graphical front-end for ROM browsing. Created by Alec "Aloshi" Lofquist.
 //http://www.aloshi.com
 
+#include "Locale.h"
+
 #include "guis/GuiDetectDevice.h"
 #include "guis/GuiMsgBox.h"
 #include "utils/FileSystemUtil.h"
@@ -342,6 +344,9 @@ int main(int argc, char* argv[])
 	window.pushGui(ViewController::get());
 
 	bool splashScreen = Settings::getInstance()->getBool("SplashScreen");
+	std::string language = Settings::getInstance()->getString("Language");
+
+	Locale::getInstance()->setLanguage(language);
 
 	if(!scrape_cmdline)
 	{

@@ -1,5 +1,7 @@
 #include "guis/GuiInputConfig.h"
 
+#include "Locale.h"
+
 #include "components/ButtonComponent.h"
 #include "components/MenuComponent.h"
 #include "guis/GuiMsgBox.h"
@@ -194,13 +196,13 @@ GuiInputConfig::GuiInputConfig(Window* window, InputConfig* target, bool reconfi
 		if (!mTargetConfig->getInputByName("HotKeyEnable", &input)) {
 			mWindow->pushGui(new GuiMsgBox(mWindow,
 				"YOU DIDN'T CHOOSE A HOTKEY ENABLE BUTTON. THIS IS REQUIRED FOR EXITING GAMES WITH A CONTROLLER. DO YOU WANT TO USE THE SELECT BUTTON DEFAULT ? PLEASE ANSWER YES TO USE SELECT OR NO TO NOT SET A HOTKEY ENABLE BUTTON.",
-				"YES", [this, okFunction] {
+				Locale::getInstance()->gettext("yes"), [this, okFunction] {
 					Input input;
 					mTargetConfig->getInputByName("Select", &input);
 					mTargetConfig->mapInput("HotKeyEnable", input);
 					okFunction();
 					},
-				"NO", [this, okFunction] {
+				Locale::getInstance()->gettext("no"), [this, okFunction] {
 					// for a disabled hotkey enable button, set to a key with id 0,
 					// so the input configuration script can be backwards compatible.
 					mTargetConfig->mapInput("HotKeyEnable", Input(DEVICE_KEYBOARD, TYPE_KEY, 0, 1, true));

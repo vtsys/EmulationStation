@@ -1,5 +1,7 @@
 #include "guis/GuiScraperStart.h"
 
+#include "Locale.h"
+
 #include "components/OptionListComponent.h"
 #include "components/SwitchComponent.h"
 #include "guis/GuiMsgBox.h"
@@ -49,8 +51,8 @@ void GuiScraperStart::pressedStart()
 		{
 			mWindow->pushGui(new GuiMsgBox(mWindow,
 				Utils::String::toUpper("Warning: some of your selected systems do not have a platform set. Results may be even more inaccurate than usual!\nContinue anyway?"),
-				"YES", std::bind(&GuiScraperStart::start, this),
-				"NO", nullptr));
+				Locale::getInstance()->gettext("yes"), std::bind(&GuiScraperStart::start, this),
+				Locale::getInstance()->gettext("no"), nullptr));
 			return;
 		}
 	}

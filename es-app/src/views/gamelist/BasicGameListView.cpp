@@ -1,3 +1,5 @@
+#include "Locale.h"
+
 #include "views/gamelist/BasicGameListView.h"
 
 #include "utils/FileSystemUtil.h"
@@ -208,7 +210,7 @@ std::vector<HelpPrompt> BasicGameListView::getHelpPrompts()
 
 	if(Settings::getInstance()->getBool("QuickSystemSelect"))
 		prompts.push_back(HelpPrompt("left/right", "system"));
-	prompts.push_back(HelpPrompt("up/down", "choose"));
+	prompts.push_back(HelpPrompt("up/down", Locale::getInstance()->gettext("choose")));
 	prompts.push_back(HelpPrompt("a", "launch"));
 	prompts.push_back(HelpPrompt("b", "back"));
 	if(!UIModeController::getInstance()->isUIModeKid())

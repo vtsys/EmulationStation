@@ -1,5 +1,7 @@
 #include "guis/GuiMetaDataEd.h"
 
+#include "Locale.h"
+
 #include <stdlib.h>
 #include "components/ButtonComponent.h"
 #include "components/ComponentList.h"
@@ -159,7 +161,7 @@ GuiMetaDataEd::GuiMetaDataEd(Window* window, MetaDataList* md, const std::vector
 	if(mDeleteFunc)
 	{
 		auto deleteFileAndSelf = [&] { mDeleteFunc(); delete this; };
-		auto deleteBtnFunc = [this, deleteFileAndSelf] { mWindow->pushGui(new GuiMsgBox(mWindow, "THIS WILL DELETE THE ACTUAL GAME FILE(S)!\nARE YOU SURE?", "YES", deleteFileAndSelf, "NO", nullptr)); };
+		auto deleteBtnFunc = [this, deleteFileAndSelf] { mWindow->pushGui(new GuiMsgBox(mWindow, "THIS WILL DELETE THE ACTUAL GAME FILE(S)!\nARE YOU SURE?", Locale::getInstance()->gettext("yes"), deleteFileAndSelf, Locale::getInstance()->gettext("no"), nullptr)); };
 		buttons.push_back(std::make_shared<ButtonComponent>(mWindow, "DELETE", "delete", deleteBtnFunc));
 	}
 
@@ -261,8 +263,8 @@ void GuiMetaDataEd::close(bool closeAllWindows)
 		// changes were made, ask if the user wants to save them
 		mWindow->pushGui(new GuiMsgBox(mWindow,
 			"SAVE CHANGES?",
-			"YES", [this, closeFunc] { save(); closeFunc(); },
-			"NO", closeFunc
+			Locale::getInstance()->gettext("yes"), [this, closeFunc] { save(); closeFunc(); },
+			Locale::getInstance()->gettext("no"), closeFunc
 		));
 	}else{
 		closeFunc();
