@@ -1,0 +1,39 @@
+<?xml version="2.0"?>
+<meta>
+  <name>UKRAINIAN</name>
+</meta>
+
+<string key="mainMenu">MAIN MENU2</string>
+
+
+<string key="scraper">SCRAPER2</string>
+<string key="scrapeFrom">SCRAPE FROM2</string>
+<string key="scrapeRatings">SCRAPE RATINGS2</string>
+<string key="scrapeNow">SCRAPE NOW2</string>
+
+
+<string key="soundSettings">SOUND SETTINGS2</string>
+
+
+<string key="uiSettings">UI SETTINGS2</string>
+
+
+<string key="gameCollectionSettings">GAME COLLECTION SETTINGS2</string>
+
+
+<string key="otherSettings">OTHER SETTINGS2</string>
+
+
+<string key="configureInput">CONFIGURE INPUT2</string>
+
+
+<string key="menu">MENU2</string>
+<string key="choose">CHOOSE2</string>
+<string key="select">SELECT2</string>
+<string key="random">RANDOM2</string>
+<string key="close">CLOSE2</string>
+<string key="quit">QUIT2</string>
+<string key="launchScreensaver">LAUNCH SCREENSAVER2</string>
+
+<string key="yes">YES2</string>
+<string key="no">NO2</string>
